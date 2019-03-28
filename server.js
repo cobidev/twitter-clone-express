@@ -45,6 +45,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('views', path.join(__dirname, 'vistas'));
 app.set('view engine', 'pug');
 
+// Static Files
+app.use('/css', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'css')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'js')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
+
 // Routes
 app.post('/signup', controladorUsuario.postSignup);
 app.post('/login', controladorUsuario.postLogin);
