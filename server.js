@@ -39,21 +39,29 @@ app.use(passport.session());
 
 // Body Parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // View Engine
 app.set('views', path.join(__dirname, 'vistas'));
 app.set('view engine', 'pug');
 
 // Static Files
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'js')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 
 // Routes
-app.post('/signup', controladorUsuario.postSignup);
+app.get('/', (req, res, next) => {
+  res.render('home');
+});
+app.get('/login', controladorUsuario.getLogin);
+app.get('/signup', controladorUsuario.getSignup);
 app.post('/login', controladorUsuario.postLogin);
-app.post('/logout', passportConfig.estaAutenticado ,controladorUsuario.getLogout);
+app.post('/signup', controladorUsuario.postSignup);
+app.get('/logout', passportConfig.estaAutenticado, controladorUsuario.getLogout);
 
 app.get('/usuarioInfo', passportConfig.estaAutenticado, (req, res) => {
   res.json(req.user);

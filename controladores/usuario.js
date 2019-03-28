@@ -1,7 +1,7 @@
 const passport = require('passport');
 const Usuario = require('../modelos/usuario');
 
-// Sign Up
+// POST Sign Up
 exports.postSignup = (req, res, next) => {
   const nuevoUsuario = new Usuario({
     email: req.body.email,
@@ -27,7 +27,7 @@ exports.postSignup = (req, res, next) => {
   })
 }
 
-// Log In
+// POST Log In
 exports.postLogin = (req, res, next) => {
   passport.authenticate('local', (err, usuario, info) => {
     if (err) {
@@ -45,7 +45,7 @@ exports.postLogin = (req, res, next) => {
   })(req, res, next)
 }
 
-// Log Out
+// GET Log Out
 exports.getLogout = (req, res, next) => {
   req.logout();
   res.send('Logout exitoso');
