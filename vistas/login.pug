@@ -1,0 +1,15 @@
+extends layout
+
+block contenido
+  .row
+    .col-md-6.offset-md-3
+      form(role='form', action="/login", method='post')
+        fieldset
+          h2 Login
+          .form-group
+            input#email.form-control.input-lg(type='email', name='email', placeholder='Email')
+          .form-group
+            input#password.form-control.input-lg(type='password', name='password', placeholder='Password')
+          .row
+            .col-md-4.offset-md-4
+              input.btn.btn-lg.btn-success.btn-block(type='submit', value='Login')

@@ -15,6 +15,9 @@ const usuarioSchema = new mongoose.Schema({
   nombre: {
     type: String,
     required: true
+  },
+  biografia: {
+    type: String
   }
 }, {
   timestamps: true

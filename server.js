@@ -53,6 +53,12 @@ app.use('/css', express.static(path.join(__dirname, 'node_modules', 'bootstrap',
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'js')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 
+// Local Variables
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+})
+
 // Routes
 app.get('/', (req, res, next) => {
   res.render('home');

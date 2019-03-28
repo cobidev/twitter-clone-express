@@ -1,12 +1,23 @@
 const passport = require('passport');
 const Usuario = require('../modelos/usuario');
 
+// GET Log In
+exports.getLogin = (req, res, next) => {
+  res.render('login');
+}
+
+// GET Sign Up
+exports.getSignup = (req, res, next) => {
+  res.render('signup');
+}
+
 // POST Sign Up
 exports.postSignup = (req, res, next) => {
   const nuevoUsuario = new Usuario({
     email: req.body.email,
     nombre: req.body.nombre,
-    password: req.body.password
+    password: req.body.password,
+    biografia: req.body.biografia
   });
 
   Usuario.findOne({email: req.body.email}, (err, usuarioExistente) => {
@@ -21,7 +32,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           next(err);
         }
-        res.send('Usuario creado exitosamente')
+        res.redirect('/')
       })
     })
   })
@@ -40,7 +51,8 @@ exports.postLogin = (req, res, next) => {
       if (err) {
         next(err);
       }
-      res.send('Login exitoso')
+
+      res.redirect('/')
     })
   })(req, res, next)
 }
@@ -48,5 +60,5 @@ exports.postLogin = (req, res, next) => {
 // GET Log Out
 exports.getLogout = (req, res, next) => {
   req.logout();
-  res.send('Logout exitoso');
+  res.redirect('/');
 }
