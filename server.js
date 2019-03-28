@@ -11,7 +11,7 @@ const controladorUsuario = require('./controladores/usuario');
 const app = express();
 
 // MongoDB - Mongoose Setup
-const MONGO_URL = 'mongodb://127.0.0.1:27017/node-express-auth';
+const MONGO_URL = 'mongodb://127.0.0.1:27017/twitter-clone';
 mongoose.Promise = global.Promise;
 mongoose.connect(MONGO_URL, {
   useCreateIndex: true,
