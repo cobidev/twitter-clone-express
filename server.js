@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const passportConfig = require('./config/passport');
+const path = require('path');
 
 const controladorUsuario = require('./controladores/usuario');
 
@@ -39,6 +40,10 @@ app.use(passport.session());
 // Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+// View Engine
+app.set('views', path.join(__dirname, 'vistas'));
+app.set('view engine', 'pug');
 
 // Routes
 app.post('/signup', controladorUsuario.postSignup);
