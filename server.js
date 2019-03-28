@@ -34,11 +34,11 @@ app.use(session({
 
 // Passport
 app.use(passport.initialize());
-app.user(passport.session());
+app.use(passport.session());
 
 // Body Parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlenconded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Routes
 app.post('/signup', controladorUsuario.postSignup);
