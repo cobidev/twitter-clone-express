@@ -1,4 +1,7 @@
 extends layout
 
 block contenido
-  h1 Home
+  if user
+    include componentes/tweetForm
+  else
+    h1 Welcome to Twitter Clone!

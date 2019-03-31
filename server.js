@@ -71,7 +71,6 @@ app.get('/logout', passportConfig.estaAutenticado, controladorUsuario.getLogout)
 
 const controladorTweets = require('./controladores/tweet');
 app.post('/tweet', passportConfig.estaAutenticado, controladorTweets.postTweet);
-// app.get('/signup', controladorUsuario.getSignup);
 
 app.get('/usuarioInfo', passportConfig.estaAutenticado, (req, res) => {
   res.json(req.user);
