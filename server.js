@@ -7,8 +7,6 @@ const passport = require('passport');
 const passportConfig = require('./config/passport');
 const path = require('path');
 
-const controladorUsuario = require('./controladores/usuario');
-
 const app = express();
 
 // MongoDB - Mongoose Setup
@@ -63,11 +61,17 @@ app.use((req, res, next) => {
 app.get('/', (req, res, next) => {
   res.render('home');
 });
+
+const controladorUsuario = require('./controladores/usuario');
 app.get('/login', controladorUsuario.getLogin);
 app.get('/signup', controladorUsuario.getSignup);
 app.post('/login', controladorUsuario.postLogin);
 app.post('/signup', controladorUsuario.postSignup);
 app.get('/logout', passportConfig.estaAutenticado, controladorUsuario.getLogout);
+
+const controladorTweets = require('./controladores/tweet');
+app.post('/tweet', passportConfig.estaAutenticado, controladorTweets.postTweet);
+// app.get('/signup', controladorUsuario.getSignup);
 
 app.get('/usuarioInfo', passportConfig.estaAutenticado, (req, res) => {
   res.json(req.user);

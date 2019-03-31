@@ -1,5 +1,6 @@
 const Tweet = require('../modelos/tweet');
 
+/* Create tweet */
 exports.postTweet = (req, res, next) => {
   // Get tweet content for body request
   const texto = req.body.texto;
@@ -17,4 +18,12 @@ exports.postTweet = (req, res, next) => {
     .then(() => {
       res.redirect('/')
     })
+}
+
+/* Show tweets per user */
+exports.getTweetsParaUsuarios = (usuarioIds) => {
+  return Tweet
+    .find({usuario: {$in: usuarioIds}})
+    .sort({createdAt: -1})
+    .populate('usuario');
 }
