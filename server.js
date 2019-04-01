@@ -75,10 +75,6 @@ app.get('/logout', passportConfig.estaAutenticado, controladorUsuario.getLogout)
 const controladorTweets = require('./controladores/tweet');
 app.post('/tweet', passportConfig.estaAutenticado, controladorTweets.postTweet);
 
-app.get('/usuarioInfo', passportConfig.estaAutenticado, (req, res) => {
-  res.json(req.user);
-})
-
 // Server Listening
 app.listen(3000, () => {
   console.log("Esuchando en el puerto 3000");

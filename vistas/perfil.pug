@@ -1,0 +1,30 @@
+extends layout
+
+block contenido
+  .row
+    .col-md-3
+      img.rounded.img-fluid.mb-2(src=`${usuario.obtenerAvatar(500)}`)
+      h4 #{usuario.nombre}
+      p #{usuario.biografia}
+
+    .col-md-9
+      .card
+        .card-body
+          .row
+            .col-md-2.text-center
+              | Tweets
+              br
+              strong #{tweets.length}
+            .col-md-2.text-center
+              | Seguidores
+              br
+              strong #{usuario.seguidores.length}
+            .col-md-2.text-center
+              | Siguiendo
+              br
+              strong #{usuario.siguiendo.length}
+            if !esconderBotones
+              if !estaFollowing
+                a.btn.btn-info.float-right(href=`/seguir/${usuario._id}`) Seguir
+              else 
+                a.btn.btn-danger.float-right(href=`/unseguir/${usuario._id}`) Dejar de seguir
