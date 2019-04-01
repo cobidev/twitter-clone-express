@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Creacion del Schema del modelo tweets
 const tweetSchema = new mongoose.Schema({
   texto: String,
   usuario: {

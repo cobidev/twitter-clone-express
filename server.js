@@ -62,6 +62,9 @@ app.get('/', (req, res, next) => {
   res.render('home');
 });
 
+const controladorPerfil = require('./controladores/perfil');
+app.get('/mi/perfil', passportConfig.estaAutenticado, controladorPerfil.getMiPerfil);
+
 const controladorUsuario = require('./controladores/usuario');
 app.get('/login', controladorUsuario.getLogin);
 app.get('/signup', controladorUsuario.getSignup);
