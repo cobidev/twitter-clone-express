@@ -38,7 +38,44 @@ exports.getPerfil = (req, res) => {
 // Function que retorna el usuario y sus tweets
 const getInformacionPerfil = (usuarioId) => {
   return Promise.all([
-    Usuario.findOne({_id: usuarioId}),
+    Usuario.findOne({
+      _id: usuarioId
+    }),
     controladorTweet.getTweetsParaUsuarios([usuarioId])
   ])
+}
+
+// UPDATE /perfil/:id - Logica para seguir usuario y que el usuario target se le agregue el seguidor
+exports.seguirUsuario = (req, res) => {
+  const usuarioLogueadoId = req.user.id;
+  const usuarioId = req.params.id
+
+  Promise.all([
+    agregarSiguiendo(usuarioLogueadoId, usuarioId),
+    agregarSeguidor(usuarioLogueadoId, usuarioId),
+  ]).then(() => {
+    res.redirect(`/perfil/${usuarioId}`);
+  });
+}
+
+// Funciones para agregar siguiendy y seguidor
+const agregarSiguiendo = (usuarioLogueadoId, usuarioId) => {
+  return Usuario.findOneAndUpdate({
+      _id: usuarioLogueadoId
+    }, // Find current user by id
+    {
+      $push: {
+        seguiendo: usuarioId
+      }
+    } // Update to push new following user
+  );
+}
+const agregarSeguidor = (usuarioLogueadoId, usuarioId) => {
+  return Usuario.findOneAndUpdate({
+    _id: usuarioId, // Find target user by id
+  }, {
+    $push: {
+      seguidores: usuarioLogueadoId
+    } // Update to push new follower from current user
+  });
 }
