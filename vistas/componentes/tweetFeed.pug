@@ -1,0 +1,13 @@
+if tweets
+  div
+    ul.list-unstyled
+      each tweet in tweets
+        li.media
+          a.float-left.mr-2(href=`/perfil/${tweet.usuario._id}`)
+            img.rounded(src=`${tweet.usuario.obtenerAvatar(55)}`, alt='')
+          .media-body
+            span.text-muted.float-right
+              small.text-muted #{tweet.createdAt.toLocaleString()}
+            strong.text-info
+              a(href=`/perfil/${tweet.usuario._id}`) #{tweet.usuario.nombre}
+            p #{tweet.texto}
