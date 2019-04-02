@@ -25,6 +25,8 @@ block contenido
               strong #{usuario.siguiendo.length}
             if !esconderBotones
               if !estaFollowing
-                a.btn.btn-info.float-right(href=`/seguir/${usuario._id}`) Seguir
-              else 
-                a.btn.btn-danger.float-right(href=`/unseguir/${usuario._id}`) Dejar de seguir
+                .col-md-3.offset-md-3
+                  a.btn.btn-info.float-right(href=`/seguir/${usuario._id}`) Seguir
+              else
+                .col-md-3.offset-md-3
+                  a.btn.btn-danger.float-right(href=`/unseguir/${usuario._id}`) Dejar de seguir

@@ -45,7 +45,7 @@ const getInformacionPerfil = (usuarioId) => {
   ])
 }
 
-// UPDATE /perfil/:id - Logica para seguir usuario y que el usuario target se le agregue el seguidor
+// GET /seguir/:id - Logica para seguir usuario y que el usuario target se le agregue el seguidor
 exports.seguirUsuario = (req, res) => {
   const usuarioLogueadoId = req.user.id;
   const usuarioId = req.params.id
@@ -58,14 +58,27 @@ exports.seguirUsuario = (req, res) => {
   });
 }
 
-// Funciones para agregar siguiendy y seguidor
+// GET /unseguir/:id - Logica para seguir usuario y que el usuario target se le agregue el seguidor
+exports.unseguirUsuario = (req, res) => {
+  const usuarioLogueadoId = req.user.id;
+  const usuarioId = req.params.id
+
+  Promise.all([
+    eliminarSiguiendo(usuarioLogueadoId, usuarioId),
+    eliminarSeguidor(usuarioLogueadoId, usuarioId),
+  ]).then(() => {
+    res.redirect(`/perfil/${usuarioId}`);
+  });
+}
+
+// Funciones para agregar/eliminar siguiendo y seguidor
 const agregarSiguiendo = (usuarioLogueadoId, usuarioId) => {
   return Usuario.findOneAndUpdate({
       _id: usuarioLogueadoId
     }, // Find current user by id
     {
       $push: {
-        seguiendo: usuarioId
+        siguiendo: usuarioId
       }
     } // Update to push new following user
   );
@@ -76,6 +89,26 @@ const agregarSeguidor = (usuarioLogueadoId, usuarioId) => {
   }, {
     $push: {
       seguidores: usuarioLogueadoId
-    } // Update to push new follower from current user
+    } // Update to push new follower from currentUser
+  });
+}
+const eliminarSiguiendo = (usuarioLogueadoId, usuarioId) => {
+  return Usuario.findOneAndUpdate({
+      _id: usuarioLogueadoId
+    }, // Find current user by id
+    {
+      $pull: {
+        siguiendo: usuarioId
+      }
+    } // Update to delete following user
+  );
+}
+const eliminarSeguidor = (usuarioLogueadoId, usuarioId) => {
+  return Usuario.findOneAndUpdate({
+    _id: usuarioId, // Find target user by id
+  }, {
+    $pull: {
+      seguidores: usuarioLogueadoId
+    } // Update to pull/remove follower currentUser
   });
 }
