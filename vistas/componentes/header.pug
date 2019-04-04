@@ -1,5 +1,5 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top
-  a.navbar-brand(href='#') TweetClone
+nav.navbar.navbar-expand-lg.navbar-light.bg-theme.mb-5
+  a.text-white.navbar-brand(href='#') TweetClone
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-expanded='false', aria-controls='navbarNav', aria-label="Toggle navigation")
     span.navbar-toggler-icon
   #navbarNav.collapse.navbar-collapse
@@ -7,8 +7,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top
       li.nav-item
         a.nav-link(href='/') Home
       li.nav-item
-        a.nav-link(href='/explorar') Explorar
-    ul.nav.navbar-nav
+        a.nav-link(href='/explorar') Explore
+      form.form-inline.my-2.my-lg-0.ml-2(role="form", action="/explorar", method="POST")
+        input.form-control.mr-sm-2(name="query", value='', placeholder="Search users...")
+    ul.navbar-nav
       if user
         li.nav-item
           a.nav-link(href='/mi/perfil') #{user.nombre}

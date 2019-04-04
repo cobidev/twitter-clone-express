@@ -77,6 +77,10 @@ app.get('/logout', passportConfig.estaAutenticado, controladorUsuario.getLogout)
 const controladorTweets = require('./controladores/tweet');
 app.post('/tweet', passportConfig.estaAutenticado, controladorTweets.postTweet);
 
+const controladorExplorar = require('./controladores/explore');
+app.get('/explorar', controladorExplorar.getExplore);
+app.post('/explorar', controladorExplorar.postExplore);
+
 // Server Listening
 app.listen(3000, () => {
   console.log("Esuchando en el puerto 3000");

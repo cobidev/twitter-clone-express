@@ -5,4 +5,10 @@ block contenido
     include componentes/tweetForm
     include componentes/tweetFeed
   else
-    h1 Welcome to Twitter Clone!
+    .row
+      .col-md-5.d-flex.align-items-center
+        h1.font-weight-bold.text-white.display-3 Welcome to
+          br
+          |Twitter Clone!
+      .col-md-7
+        object.illustration(type='image/svg+xml' data='/public/images/illustration.svg')

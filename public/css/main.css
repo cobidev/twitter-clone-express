@@ -1,15 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 body {
-  padding-top: 6rem;
-  /* margin-bottom: 75px; */
+  /* padding-top: 6rem; */
+  font-family: 'Source Sans Pro', sans-serif;
+  background: #1e3c72; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1e3c72, #2a5298); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1e3c72, #2a5298); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#container > .row {
+  margin-top: -100px
+}
+
+.illustration {
+  height: 400px;
+  float: right;
+}
+
+footer {
+  width: 100%;
+  background: #272727;
+}
+
+.bg-theme {
+  background: #0d1c5252;
+}
+
+ul.navbar-nav .nav-item .nav-link {
+  color: rgba(255, 255, 255, 0.808);
+  font-weight: bold;
+  transition: all ease .2s;
+}
+ul.navbar-nav .nav-item .nav-link:hover {
+  color:white;
+  transform: translateY(-2px);
 }
 
 .media {
   padding: 10px;
   margin-top: 0;
+  transition: all ease .5s;
 }
 
 .media:hover {
-  background: #f9f9f9;
+  background: #142748;
 }
 
 .feed.img-rounded {
@@ -24,4 +62,27 @@ body {
 
 .explorar .foto-perfil {
   width: 55px;
+}
+
+/* Tweet Form */
+.card {
+  background-color: #1e3c72;
+}
+
+.card textarea.form-control, .card textarea.form-control:focus {
+  background-color: #1e3c72;
+  color: white;
+}
+
+.card textarea.form-control:focus {
+  border-color: #004692;
+}
+
+.card textarea.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.753);
+}
+
+/* Tweet Feed */
+.light-grey-text {
+  color: #82a8ff;
 }

@@ -3,23 +3,23 @@ extends layout
 block contenido
   .row
     .col-md-3
-      img.rounded.img-fluid.mb-2(src=`${usuario.obtenerAvatar(500)}`)
-      h4 #{usuario.nombre}
-      p #{usuario.biografia}
+      img.rounded.img-fluid.mb-2(src=`${usuario.obtenerAvatar(400)}`)
+      h4.text-white #{usuario.nombre}
+      p.text-white #{usuario.biografia}
 
     .col-md-9
-      .card
+      .card.mb-3
         .card-body
           .row
-            .col-md-2.text-center
+            .col-md-2.text-center.text-white
               | Tweets
               br
               strong #{tweets.length}
-            .col-md-2.text-center
+            .col-md-2.text-center.text-white
               | Seguidores
               br
               strong #{usuario.seguidores.length}
-            .col-md-2.text-center
+            .col-md-2.text-center.text-white
               | Siguiendo
               br
               strong #{usuario.siguiendo.length}
