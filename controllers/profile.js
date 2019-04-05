@@ -26,7 +26,7 @@ exports.getProfile = (req, res) => {
 
   getInformacionPerfil(userId)
     .then(([user, tweets]) => {
-      res.render('perfil', {
+      res.render('profile', {
         user: user,
         tweets: tweets,
         isFollowing,

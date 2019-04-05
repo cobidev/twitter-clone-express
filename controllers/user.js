@@ -15,7 +15,7 @@ module.exports = {
   // POST Sign Up
   postSignup(req, res, next) {
     if (!req.body.email || !req.body.name || !req.body.bio) {
-      req.flash("errores", { message: "Debes llenar todos los campos!" });
+      req.flash("error", "Debes llenar todos los campos!");
       return res.redirect("/signup");
     }
 
@@ -30,11 +30,12 @@ module.exports = {
     User.register(newUser, req.body.password, (err, user) => {
       if (err) {
         console.log(err);
-        req.flash("errores", { message: err.message });
+        req.flash("error", `${err.message}`);
         return res.redirect("/signup");
       }
 
       passport.authenticate("local")(req, res, () => {
+        req.flash("success", 'Usuario registrado exitosamente!');
         res.redirect("/");
       });
     });

@@ -1,6 +1,11 @@
-if messages.errores
-  .alert.alert-danger
-    button.close(type='button', data-dismiss='alert')
-      i.fa.fa-times-circle-o
-    for error in messages.errores
-      div #{error.message}
+if messages.error
+  .alert.alert-danger.alert-dismissible.fade.show(role="alert")
+    div=messages.error
+    button.close(type="button" data-dismiss="alert" aria-label="Close")
+      span(aria-hidden="true") ×
+
+if messages.success
+  .alert.alert-success.alert-dismissible.fade.show(role="alert")
+    div=messages.success
+    button.close(type="button" data-dismiss="alert" aria-label="Close")
+      span(aria-hidden="true") ×
