@@ -1,9 +1,9 @@
-extends layout
+extends layouts/layout
 
 block contenido
   if user
-    include componentes/tweetForm
-    include componentes/tweetFeed
+    include partials/tweetForm
+    include partials/tweetFeed
   else
     .row
       .col-md-5.d-flex.align-items-center

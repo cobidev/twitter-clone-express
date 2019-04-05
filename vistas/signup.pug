@@ -1,11 +1,11 @@
-extends layout
+extends layouts/layout
 
 block contenido
   .row
     .col-md-6.offset-md-3
       form(role='form', action="/signup", method='post')
         fieldset
-          h2 Signup
+          h2.text-white Signup
           .form-group
             input#email.form-control.input-lg(type='text', name='nombre', placeholder='Nombre')
           .form-group

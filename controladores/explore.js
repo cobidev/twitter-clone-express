@@ -1,7 +1,7 @@
 const Usuario = require('../modelos/usuario');
 
 exports.getExplore = (req, res, next) => {
-  res.render('explorar', {usuarios: []});
+  res.render('explore', {usuarios: []});
 }
 
 exports.postExplore = (req, res, next) => {
@@ -10,6 +10,6 @@ exports.postExplore = (req, res, next) => {
   Usuario.find({nombre: new RegExp(`.*${query}.*`, 'i')})
     .select('_id nombre biografia email')
     .then((usuarios) => {
-      res.render('explorar', {usuarios});
+      res.render('explore', {usuarios});
     })
 }

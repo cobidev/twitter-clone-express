@@ -1,0 +1,6 @@
+if messages.errores
+  .alert.alert-danger
+    button.close(type='button', data-dismiss='alert')
+      i.fa.fa-times-circle-o
+    for error in messages.errores
+      div=error.message

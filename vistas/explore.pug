@@ -1,11 +1,11 @@
-extends layout
+extends layouts/layout
 
 block contenido
-  .row.justify-content-center(style='margin-top: -25%')
+  .row.justify-content-center
     .col-md-8
       ul.list-unstyled
         each usuario in usuarios
-          li.media
+          li.media.rounded
             a.float-left.mr-2(href=`/perfil/${usuario._id}`)
               img.foto-perfil.rounded(src=`${usuario.obtenerAvatar(55)}`) 
             .media-body.pl-3

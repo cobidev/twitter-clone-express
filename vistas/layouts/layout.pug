@@ -10,12 +10,13 @@ html
     link(rel="stylesheet", href="/public/css/main.css")
 
   body
-    include componentes/header
+    include ../partials/header
 
-    #container.container
+    .container
+      include ../partials/flash
       block contenido
 
-    include componentes/footer
+    include ../partials/footer
 
     script(src='/js/jquery.min.js')
     script(src="/js/bootstrap.min.js")

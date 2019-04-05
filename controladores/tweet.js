@@ -6,6 +6,7 @@ exports.postTweet = (req, res, next) => {
   const texto = req.body.texto;
   // If text content of tweet doesnt exist redirect to home
   if (!texto) {
+    req.flash('errores', {message: 'Por favor ingresar texto antes de enviar'});
     return res.redirect('/');
   }
   // Create tweet

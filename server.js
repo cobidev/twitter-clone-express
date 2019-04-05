@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const passportConfig = require('./config/passport');
 const path = require('path');
+const flash = require('express-flash');
 
 const app = express();
 
@@ -40,6 +41,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+// Flash Messages
+app.use(flash());
 
 // View Engine
 app.set('views', path.join(__dirname, 'vistas'));

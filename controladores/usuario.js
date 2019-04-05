@@ -13,6 +13,11 @@ exports.getSignup = (req, res, next) => {
 
 // POST Sign Up
 exports.postSignup = (req, res, next) => {
+  if (!req.body.email || !req.body.nombre || !req.body.biografia) {
+    req.flash('errores', {message: 'Debes llenar todos los campos!'});
+    return res.redirect('/signup');
+  }
+
   const nuevoUsuario = new Usuario({
     email: req.body.email,
     nombre: req.body.nombre,
@@ -45,13 +50,13 @@ exports.postLogin = (req, res, next) => {
       next(err);
     }
     if (!usuario) {
-      return res.status(400).send('Email o contrasena no validos');
+      req.flash('errores', {message: 'Email o password no validos!'});
+      return res.redirect('/login');
     }
     req.logIn(usuario, (err) => {
       if (err) {
         next(err);
       }
-
       res.redirect('/')
     })
   })(req, res, next)

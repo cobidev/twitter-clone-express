@@ -1,11 +1,10 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-theme.mb-5
-  a.text-white.navbar-brand(href='#') TweetClone
+  a.text-white.navbar-brand(href='/')
+    img(src="/public/images/logo.png", alt="Logo", style='height: 2.5rem')
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-expanded='false', aria-controls='navbarNav', aria-label="Toggle navigation")
     span.navbar-toggler-icon
   #navbarNav.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      li.nav-item
-        a.nav-link(href='/') Home
       form.form-inline.my-2.my-lg-0.ml-2(role="form", action="/explorar", method="POST")
         input.form-control.mr-sm-2(name="query", value='', placeholder="Search users...")
     ul.navbar-nav
