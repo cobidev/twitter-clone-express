@@ -3,4 +3,4 @@ if messages.errores
     button.close(type='button', data-dismiss='alert')
       i.fa.fa-times-circle-o
     for error in messages.errores
-      div=error.message
+      div #{error.message}

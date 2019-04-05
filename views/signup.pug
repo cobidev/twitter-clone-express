@@ -1,0 +1,21 @@
+extends layouts/layout
+
+block content
+  .row
+    .col-md-6.offset-md-3
+      form(role='form', action="/signup", method='post')
+        fieldset
+          h2.text-white Signup
+          .form-group
+            input.form-control.input-lg(type='text', name='name', placeholder='Full Name')
+          .form-group
+            input.form-control.input-lg(type='email', name='email', placeholder='Email')
+          .form-group
+            input.form-control.input-lg(type='text', name='username', placeholder='Username')
+          .form-group
+            input.form-control.input-lg(type='password', name='password', placeholder='Password')
+          .form-group
+            input.form-control.input-lg(type='text', name='bio', placeholder='Tell us a little about yourself!')
+          .row
+            .col-md-4.offset-md-4
+              input.btn.btn-lg.btn-success.btn-block(type='submit', value='Signup')

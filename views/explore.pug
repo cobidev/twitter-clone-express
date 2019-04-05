@@ -1,0 +1,15 @@
+extends layouts/layout
+
+block content
+  .row.justify-content-center
+    .col-md-8
+      ul.list-unstyled
+        each user in users
+          li.media.rounded
+            a.float-left.mr-2(href=`/profile/${user._id}`)
+              img.foto-perfil.rounded(src=`${user.obtenerAvatar(55)}`) 
+            .media-body.pl-3
+              a.text-white(href=`/profile/${user._id}`)
+                h4.title.text-white #{user.name}
+              p.summary.text-white #{user.bio}
+          hr(style='border-top: 1px solid #ffffff47')

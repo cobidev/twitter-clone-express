@@ -1,13 +1,13 @@
 extends layouts/layout
 
-block contenido
+block content
   .row.justify-content-center
     .col-md-6
       form(role='form', action="/login", method='post')
         fieldset
           h2.text-white Login
           .form-group
-            input#email.form-control.input-lg(type='email', name='email', placeholder='Email')
+            input#username.form-control.input-lg(type='text', name='username', placeholder='Username')
           .form-group
             input#password.form-control.input-lg(type='password', name='password', placeholder='Password')
           .row.justify-content-center

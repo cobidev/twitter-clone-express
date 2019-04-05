@@ -1,0 +1,34 @@
+extends layouts/layout
+
+block content
+  .row
+    .col-md-3
+      img.rounded.img-fluid.mb-2(src=`${user.obtenerAvatar(400)}`)
+      h4.text-white #{user.name}
+      p.text-white #{user.bio}
+
+    .col-md-9
+      .card.mb-3
+        .card-body
+          .row
+            .col-md-2.text-center.text-white
+              | Tweets
+              br
+              strong #{tweets.length}
+            .col-md-2.text-center.text-white
+              | Followers
+              br
+              strong #{user.followers.length}
+            .col-md-2.text-center.text-white
+              | Following
+              br
+              strong #{user.following.length}
+            if !hideButtons
+              if !isFollowing
+                .col-md-3.offset-md-3
+                  a.btn.btn-info.float-right(href=`/profile/follow/${user._id}`) Follow
+              else
+                .col-md-3.offset-md-3
+                  a.btn.btn-danger.float-right(href=`/profile/unfollow/${user._id}`) Unfollow
+
+      include partials/tweetFeed

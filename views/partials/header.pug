@@ -5,12 +5,12 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-theme.mb-5
     span.navbar-toggler-icon
   #navbarNav.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      form.form-inline.my-2.my-lg-0.ml-2(role="form", action="/explorar", method="POST")
+      form.form-inline.my-2.my-lg-0.ml-2(role="form", action="/explore", method="POST")
         input.form-control.mr-sm-2(name="query", value='', placeholder="Search users...")
     ul.navbar-nav
       if user
         li.nav-item
-          a.nav-link(href='/mi/perfil') #{user.nombre}
+          a.nav-link(href='/profile/me') #{user.nombre}
         li.nav-item
           a.nav-link(href='/logout') Logout
       else          

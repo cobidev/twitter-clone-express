@@ -3,12 +3,12 @@ if tweets
     ul.list-unstyled
       each tweet in tweets
         li.media
-          a.float-left.mr-2(href=`/perfil/${tweet.usuario._id}`)
-            img.rounded(src=`${tweet.usuario.obtenerAvatar(55)}`, alt='')
+          a.float-left.mr-2(href=`/profile/${tweet.user._id}`)
+            img.rounded(src=`${tweet.user.obtenerAvatar(55)}`, alt='')
           .media-body
             span.float-right
               small.light-grey-text #{tweet.createdAt.toLocaleString()}
             strong
-              a.text-white(href=`/perfil/${tweet.usuario._id}`) #{tweet.usuario.nombre}
-            p.text-white #{tweet.texto}
+              a.text-white(href=`/profile/${tweet.user._id}`) #{tweet.user.name}
+            p.text-white #{tweet.text}
         hr(style='border-top: 1px solid #ffffff47')

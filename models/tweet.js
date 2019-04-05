@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 // Creacion del Schema del modelo tweets
 const tweetSchema = new mongoose.Schema({
-  texto: String,
-  usuario: {
+  text: String,
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Usuario'
+    ref: 'User'
   }
 }, {
   timestamps: true
