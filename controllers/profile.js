@@ -16,12 +16,13 @@ exports.getMyProfile = (req, res) => {
 
 // DELETE usuario actual (mi perfil)
 exports.destroyProfile = (req, res) => {
-  User.findByIdAndRemove(req.user.id, (err) => {
+  User.findOneAndDelete({ _id: req.user._id }, (err) => {
     if (err) {
       req.flash('error', 'Unable to delete your account!');
-      return res.redirect('/profile/me');
+      return res.redirect('back');
     }
-    res.redirect('/logout');
+    req.logout();
+    res.redirect('/');
   })
 }
 
