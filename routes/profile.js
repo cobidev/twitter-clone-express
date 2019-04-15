@@ -5,13 +5,17 @@ const {
   getMyProfile,
   getProfile,
   followUser,
-  unfollowUser
+  unfollowUser,
+  destroyProfile
 } = require('../controllers/profile');
 
-// GET /profile/me
+// GET my profile - /profile/me
 router.get('/me', middlewares.isLoggedIn, getMyProfile);
 
-// GET /profile/:id
+// DELETE my profile - /profile/me
+router.delete('/me', middlewares.isLoggedIn, destroyProfile);
+
+// GET profile - /profile/:id
 router.get('/:id', getProfile);
 
 // GET /profile/follow/:id

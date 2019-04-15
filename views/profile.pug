@@ -6,7 +6,8 @@ block content
       img.rounded.img-fluid.mb-2(src=`${user.obtenerAvatar(400)}`)
       h4.text-white #{user.name}
       p.text-white #{user.bio}
-
+      form(role='form', action="/profile/me?_method=DELETE", method='POST')
+        input.btn.btn-danger(type='submit', value='Delete Account')
     .col-md-9
       .card.mb-3
         .card-body

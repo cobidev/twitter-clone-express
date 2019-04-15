@@ -14,6 +14,17 @@ exports.getMyProfile = (req, res) => {
     })
 }
 
+// DELETE usuario actual (mi perfil)
+exports.destroyProfile = (req, res) => {
+  User.findByIdAndRemove(req.user.id, (err) => {
+    if (err) {
+      req.flash('error', 'Unable to delete your account!');
+      return res.redirect('/profile/me');
+    }
+    res.redirect('/logout');
+  })
+}
+
 // SHOW informacion de perfil de otro usuario
 exports.getProfile = (req, res) => {
   const userId = req.params.id;

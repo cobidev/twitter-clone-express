@@ -1,22 +1,22 @@
-const passport = require("passport");
-const User = require("../models/user");
+const passport = require('passport');
+const User = require('../models/user');
 
 module.exports = {
   // GET Log In
   getLogin(req, res, next) {
-    res.render("login");
+    res.render('login');
   },
 
   // GET Sign Up
   getSignup(req, res, next) {
-    res.render("signup");
+    res.render('signup');
   },
 
   // POST Sign Up
   postSignup(req, res, next) {
     if (!req.body.email || !req.body.name || !req.body.bio) {
-      req.flash("error", "Debes llenar todos los campos!");
-      return res.redirect("/signup");
+      req.flash('error', 'Debes llenar todos los campos!');
+      return res.redirect('/signup');
     }
 
     const newUser = new User({
@@ -30,28 +30,28 @@ module.exports = {
     User.register(newUser, req.body.password, (err, user) => {
       if (err) {
         console.log(err);
-        req.flash("error", `${err.message}`);
-        return res.redirect("/signup");
+        req.flash('error', `${err.message}`);
+        return res.redirect('/signup');
       }
 
-      passport.authenticate("local")(req, res, () => {
-        req.flash("success", 'Usuario registrado exitosamente!');
-        res.redirect("/");
+      passport.authenticate('local')(req, res, () => {
+        req.flash('success', 'Usuario registrado exitosamente!');
+        res.redirect('/');
       });
     });
   },
 
   // POST Log In
   postLogin(req, res, next) {
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/login"
+    passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/login'
     })(req, res, next);
   },
 
   // GET Log Out
   getLogout(req, res, next) {
     req.logout();
-    res.redirect("/");
+    res.redirect('/');
   }
 };
