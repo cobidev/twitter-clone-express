@@ -2,13 +2,37 @@ extends layouts/layout
 
 block content
   .row
-    .col-md-3
-      img.rounded.img-fluid.mb-2(src=`${user.obtenerAvatar(400)}`)
+    .col-md-4
+      img.rounded.img-fluid.mb-2(src=`${user.obtenerAvatar(200)}`)
       h4.text-white #{user.name}
       p.text-white #{user.bio}
+      //- Edit Form
+      button.btn.btn-warning.mb-2(type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample')
+        | Edit Account
+      #collapseExample.collapse
+        .card.card-body
+          form(role='form', action="/profile/me?_method=PUT", method='POST')
+            fieldset
+              h4.text-white Edit User
+              .form-group
+                label.text-white(for='name') Name
+                input#name.form-control.input-lg(type='text', name='user[name]', value=user.name)
+              .form-group
+                label.text-white(for='email') Email
+                input#email.form-control.input-lg(type='email', name='user[email]', value=user.email)
+              .form-group
+                label.text-white(for='username') Username
+                input#username.form-control.input-lg(type='text', name='user[username]', value=user.username)
+              .form-group
+                label.text-white(for='bio') Bio
+                input#bio.form-control.input-lg(type='text', name='user[bio]', value=user.bio)
+              .row
+                .col-md-4
+                  input.btn.btn-warning.btn-block(type='submit', value='Update')
+      //- Delete Form
       form(role='form', action="/profile/me?_method=DELETE", method='POST')
         input.btn.btn-danger(type='submit', value='Delete Account')
-    .col-md-9
+    .col-md-8
       .card.mb-3
         .card-body
           .row

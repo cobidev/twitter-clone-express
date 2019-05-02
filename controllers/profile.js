@@ -14,6 +14,20 @@ exports.getMyProfile = (req, res) => {
     })
 }
 
+// SHOW formulario para editar usuario
+exports.updateProfile = (req, res) => {
+  // find by id and update user
+  User.findByIdAndUpdate(req.user._id, req.body.user, (err, user) => {
+    if(err){
+      console.log(err);
+      res.redirect('back');
+    } else {
+      req.flash("success", "User Succesfully Updated!");
+      res.redirect('/profile/me');
+    }
+  });
+}
+
 // DELETE usuario actual (mi perfil)
 exports.destroyProfile = (req, res) => {
   User.findOneAndDelete({ _id: req.user._id }, (err) => {

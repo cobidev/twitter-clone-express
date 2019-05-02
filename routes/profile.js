@@ -6,11 +6,15 @@ const {
   getProfile,
   followUser,
   unfollowUser,
-  destroyProfile
+  destroyProfile,
+  updateProfile
 } = require('../controllers/profile');
 
 // GET my profile - /profile/me
 router.get('/me', middlewares.isLoggedIn, getMyProfile);
+
+// UPDATE my profile - /profile/me
+router.put('/me', middlewares.isLoggedIn, updateProfile);
 
 // DELETE my profile - /profile/me
 router.delete('/me', middlewares.isLoggedIn, destroyProfile);
