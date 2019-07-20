@@ -7,7 +7,8 @@ block content
       h4.text-white #{user.name}
       p.text-white #{user.bio}
       //- Edit Form
-      if (`${currentUser.id}` === `${user._id}`) // - Check if currentUser is the user from current profile
+      //- Check if currentUser is the user from current profile
+      if (`${currentUser.id}` === `${user._id}`)
         button.btn.btn-warning.mb-2(type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample')
           | Edit Account
         #collapseExample.collapse
