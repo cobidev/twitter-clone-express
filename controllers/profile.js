@@ -3,103 +3,104 @@ const controladorTweet = require('./tweet');
 
 // SHOW informacion sobre mi usuario
 exports.getMyProfile = (req, res) => {
-  getInformacionPerfil(req.user._id)
-    .then(([user, tweets]) => {
-      res.render('profile', {
-        user: user,
-        tweets: tweets,
-        isFollowing: false,
-        hideButtons: true
-      })
-    })
-}
+  getInformacionPerfil(req.user._id).then(([user, tweets]) => {
+    res.render('profile', {
+      user: user,
+      tweets: tweets,
+      isFollowing: false,
+      hideButtons: true
+    });
+  });
+};
 
 // SHOW formulario para editar usuario
 exports.updateProfile = (req, res) => {
   // find by id and update user
   User.findByIdAndUpdate(req.user._id, req.body.user, (err, user) => {
-    if(err){
+    if (err) {
       console.log(err);
       res.redirect('back');
     } else {
-      req.flash("success", "User Succesfully Updated!");
+      req.flash('success', 'User Succesfully Updated!');
       res.redirect('/profile/me');
     }
   });
-}
+};
 
 // DELETE usuario actual (mi perfil)
 exports.destroyProfile = (req, res) => {
-  User.findOneAndDelete({ _id: req.user._id }, (err) => {
+  User.findOneAndDelete({ _id: req.user._id }, err => {
     if (err) {
       req.flash('error', 'Unable to delete your account!');
       return res.redirect('back');
     }
     req.logout();
     res.redirect('/');
-  })
-}
+  });
+};
 
 // SHOW informacion de perfil de otro usuario
 exports.getProfile = (req, res) => {
   const userId = req.params.id;
-  const isFollowing = req.user ? req.user.following.indexOf(userId) > -1 : false;
+  const isFollowing = req.user
+    ? req.user.following.indexOf(userId) > -1
+    : false;
   const hideButtons = req.user ? false : true;
 
   if (req.user && req.user._id.equals(userId)) {
     return res.redirect('/profile/me');
   }
 
-  getInformacionPerfil(userId)
-    .then(([user, tweets]) => {
-      res.render('profile', {
-        user: user,
-        tweets: tweets,
-        isFollowing,
-        hideButtons
-      })
-    })
-}
+  getInformacionPerfil(userId).then(([user, tweets]) => {
+    res.render('profile', {
+      user: user,
+      tweets: tweets,
+      isFollowing,
+      hideButtons
+    });
+  });
+};
 
 // Function que retorna el usuario y sus tweets
-const getInformacionPerfil = (usuarioId) => {
+const getInformacionPerfil = usuarioId => {
   return Promise.all([
     User.findOne({
       _id: usuarioId
     }),
     controladorTweet.getTweetsParaUsuarios([usuarioId])
-  ])
-}
+  ]);
+};
 
 // GET profile/follow/:id - Logica para seguir usuario y que el usuario target se le agregue el seguidor
 exports.followUser = (req, res) => {
   const usuarioLogueadoId = req.user.id;
-  const usuarioId = req.params.id
+  const usuarioId = req.params.id;
 
   Promise.all([
     agregarSiguiendo(usuarioLogueadoId, usuarioId),
-    agregarSeguidor(usuarioLogueadoId, usuarioId),
+    agregarSeguidor(usuarioLogueadoId, usuarioId)
   ]).then(() => {
     res.redirect(`/profile/${usuarioId}`);
   });
-}
+};
 
 // GET profile/unfollow/:id - Logica para seguir usuario y que el usuario target se le agregue el seguidor
 exports.unfollowUser = (req, res) => {
   const usuarioLogueadoId = req.user.id;
-  const usuarioId = req.params.id
+  const usuarioId = req.params.id;
 
   Promise.all([
     eliminarSiguiendo(usuarioLogueadoId, usuarioId),
-    eliminarSeguidor(usuarioLogueadoId, usuarioId),
+    eliminarSeguidor(usuarioLogueadoId, usuarioId)
   ]).then(() => {
     res.redirect(`/profile/${usuarioId}`);
   });
-}
+};
 
 // Funciones para agregar/eliminar siguiendo y seguidor
 const agregarSiguiendo = (usuarioLogueadoId, usuarioId) => {
-  return User.findOneAndUpdate({
+  return User.findOneAndUpdate(
+    {
       _id: usuarioLogueadoId // Find current user by id
     },
     {
@@ -108,33 +109,40 @@ const agregarSiguiendo = (usuarioLogueadoId, usuarioId) => {
       }
     }
   );
-}
+};
 const agregarSeguidor = (usuarioLogueadoId, usuarioId) => {
-  return User.findOneAndUpdate({
-    _id: usuarioId, // Find target user by id
-  }, {
-    $push: {
-      followers: usuarioLogueadoId // Update to push new follower from currentUser
+  return User.findOneAndUpdate(
+    {
+      _id: usuarioId // Find target user by id
+    },
+    {
+      $push: {
+        followers: usuarioLogueadoId // Update to push new follower from currentUser
+      }
     }
-  });
-}
+  );
+};
 const eliminarSiguiendo = (usuarioLogueadoId, usuarioId) => {
-  return User.findOneAndUpdate({
+  return User.findOneAndUpdate(
+    {
       _id: usuarioLogueadoId // Find current user by id
-    }, 
+    },
     {
       $pull: {
         following: usuarioId // Update to delete following user
       }
-    } 
+    }
   );
-}
+};
 const eliminarSeguidor = (usuarioLogueadoId, usuarioId) => {
-  return User.findOneAndUpdate({
-    _id: usuarioId, // Find target user by id
-  }, {
-    $pull: {
-      followers: usuarioLogueadoId // Update to pull/remove follower currentUser
-    } 
-  });
-}
+  return User.findOneAndUpdate(
+    {
+      _id: usuarioId // Find target user by id
+    },
+    {
+      $pull: {
+        followers: usuarioLogueadoId // Update to pull/remove follower currentUser
+      }
+    }
+  );
+};

@@ -1,10 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap');
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background: #1e3c72; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #1e3c72, #2a5298); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #1e3c72, #2a5298); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(
+    to right,
+    #1e3c72,
+    #2a5298
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #1e3c72,
+    #2a5298
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* height: 100vh; */
   position: relative;
   padding-bottom: 6rem;
@@ -41,10 +49,10 @@ body {
 ul.navbar-nav .nav-item .nav-link {
   color: rgba(255, 255, 255, 0.808);
   font-weight: bold;
-  transition: all ease .2s;
+  transition: all ease 0.2s;
 }
 ul.navbar-nav .nav-item .nav-link:hover {
-  color:white;
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -52,7 +60,7 @@ ul.navbar-nav .nav-item .nav-link:hover {
 .media {
   padding: 10px;
   margin-top: 0;
-  transition: all ease .5s;
+  transition: all ease 0.5s;
 }
 
 .media:hover {
@@ -79,7 +87,8 @@ ul.navbar-nav .nav-item .nav-link:hover {
   background-color: #1e3c72;
 }
 
-.card textarea.form-control, .card textarea.form-control:focus {
+.card textarea.form-control,
+.card textarea.form-control:focus {
   background-color: #1e3c72;
   color: white;
 }

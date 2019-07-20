@@ -88,7 +88,7 @@ app.use(
 
 // Local Variables
 app.use((req, res, next) => {
-  res.locals.user = req.user;
+  res.locals.currentUser = req.user;
   next();
 });
 

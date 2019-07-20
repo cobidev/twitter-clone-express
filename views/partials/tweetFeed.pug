@@ -12,7 +12,8 @@ if tweets
               a.text-white(href=`/profile/${tweet.user._id}`) #{tweet.user.name}
             p.text-white #{tweet.text}
               //- Delete Tweet
-              if user.id == tweet.user._id
-                form.float-right(role='form', action="/tweet?_method=DELETE", method='POST')
-                  input.btn.btn-danger.btn-sm(type='submit', value='delete tweet')
+              if `${currentUser.id}` === `${tweet.user._id}`
+                div
+                  form.float-right(role='form', action="/tweet?_method=DELETE", method='POST')
+                    input.btn.btn-danger.btn-sm(type='submit', value='Delete Tweet')
         hr(style='border-top: 1px solid #ffffff47')

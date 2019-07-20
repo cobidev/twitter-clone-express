@@ -1,14 +1,12 @@
 extends layouts/layout
 
 block content
-  if user
+  if currentUser
     include partials/tweetForm
     include partials/tweetFeed
   else
     .row
       .col-md-5.d-flex.align-items-center
-        h1.font-weight-bold.text-white.display-3 Welcome to
-          br
-          |Twitter Clone!
+        h1.font-weight-bold.text-white.display-4 Welcome to Twitter Clone!
       .col-md-7
         object.illustration(type='image/svg+xml' data='/public/images/illustration.svg')
