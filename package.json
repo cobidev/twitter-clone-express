@@ -2,12 +2,11 @@
   "name": "twitter-clone",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./bin/www"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jacobo Martinez",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",

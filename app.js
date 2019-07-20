@@ -11,6 +11,11 @@ const User = require('./models/user');
 
 const app = express();
 
+// Check if is the environment is development to require dotenv
+if (app.get('env') == 'development') {
+  require('dotenv').config();
+}
+
 // MongoDB - Mongoose Setup
 const MONGO_URL =
   process.env.DATABASEURL || 'mongodb://127.0.0.1:27017/twitter-clone';
@@ -22,6 +27,12 @@ mongoose.connect(MONGO_URL, {
 mongoose.connection.on('error', err => {
   throw err;
 });
+
+// Webpack config
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackConfig = require('./webpack.config');
+app.use(webpackDevMiddleware(webpack(webpackConfig)));
 
 // Requiring Routes
 const indexRoutes = require('./routes/index');
@@ -99,8 +110,5 @@ app.use('/explore', exploreRoutes);
 app.use('/tweet', tweetRoutes);
 app.use('/profile', profileRoutes);
 
-// Server Listening
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, process.env.IP, () => {
-  console.log(`Server Listening on PORT ${PORT}`);
-});
+// Export
+module.exports = app;
