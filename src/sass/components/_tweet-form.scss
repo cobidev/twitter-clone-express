@@ -1,0 +1,18 @@
+/* Tweet Form */
+.card {
+  background-color: #1e3c72;
+}
+
+.card textarea.form-control,
+.card textarea.form-control:focus {
+  background-color: #1e3c72;
+  color: white;
+}
+
+.card textarea.form-control:focus {
+  border-color: #004692;
+}
+
+.card textarea.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.753);
+}

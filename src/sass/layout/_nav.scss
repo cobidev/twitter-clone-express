@@ -1,0 +1,20 @@
+/* Nav-Header */
+#navbarNav form input {
+  background-color: #1e3c72;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.363);
+}
+
+#navbarNav form input::placeholder {
+  color: rgba(255, 255, 255, 0.753);
+}
+
+ul.navbar-nav .nav-item .nav-link {
+  color: rgba(255, 255, 255, 0.808);
+  font-weight: bold;
+  transition: all ease 0.2s;
+}
+ul.navbar-nav .nav-item .nav-link:hover {
+  color: white;
+  transform: translateY(-2px);
+}
