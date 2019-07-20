@@ -5,8 +5,8 @@ const controladorTweet = require('./tweet');
 exports.getMyProfile = (req, res) => {
   getInformacionPerfil(req.user._id).then(([user, tweets]) => {
     res.render('profile', {
-      user: user,
-      tweets: tweets,
+      user,
+      tweets,
       isFollowing: false,
       hideButtons: true
     });
@@ -53,8 +53,8 @@ exports.getProfile = (req, res) => {
 
   getInformacionPerfil(userId).then(([user, tweets]) => {
     res.render('profile', {
-      user: user,
-      tweets: tweets,
+      user,
+      tweets,
       isFollowing,
       hideButtons
     });
