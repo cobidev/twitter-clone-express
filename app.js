@@ -61,7 +61,7 @@ app.use(
 // Flash Messages
 app.use(flash());
 // Method Override
-app.use(methodOverride("_method"));
+app.use(methodOverride('_method'));
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -69,9 +69,22 @@ app.set('view engine', 'pug');
 
 // Static Files
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/css', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'css')));
-app.use('/js', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'js')));
-app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
+app.use(
+  '/css',
+  express.static(
+    path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'css')
+  )
+);
+app.use(
+  '/js',
+  express.static(
+    path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'js')
+  )
+);
+app.use(
+  '/js',
+  express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist'))
+);
 
 // Local Variables
 app.use((req, res, next) => {
@@ -87,6 +100,7 @@ app.use('/tweet', tweetRoutes);
 app.use('/profile', profileRoutes);
 
 // Server Listening
-app.listen(process.env.PORT || 3000, process.env.IP, () => {
-  console.log('Server Listening :)');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, process.env.IP, () => {
+  console.log(`Server Listening on PORT ${PORT}`);
 });
