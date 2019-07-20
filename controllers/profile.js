@@ -19,11 +19,11 @@ exports.updateProfile = (req, res) => {
   User.findByIdAndUpdate(req.user._id, req.body.user, (err, user) => {
     if (err) {
       console.log(err);
-      res.redirect('back');
-    } else {
-      req.flash('success', 'User Succesfully Updated!');
-      res.redirect('/profile/me');
+      return res.redirect('back');
     }
+
+    req.flash('success', 'User Succesfully Updated!');
+    res.redirect('/profile/me');
   });
 };
 
