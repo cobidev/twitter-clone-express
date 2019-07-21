@@ -3,7 +3,7 @@ extends layouts/layout
 block content
   .row.justify-content-center
     .col-md-8
-      ul.list-unstyled
+      ul#list-users.load-hidden.list-unstyled
         each user in users
           li.media.rounded
             a.float-left.mr-2(href=`/profile/${user._id}`)
