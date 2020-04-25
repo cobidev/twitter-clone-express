@@ -41,6 +41,7 @@
     "webpack-dev-middleware": "^3.7.2"
   },
   "devDependencies": {
+    "acorn": "^7.1.1",
     "dotenv": "^8.2.0",
     "locus": "^2.0.4"
   }
