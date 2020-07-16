@@ -17,7 +17,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
     "jquery": "^3.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "method-override": "^3.0.0",
     "mongoose": "^5.9.10",
     "passport": "^0.4.1",
